@@ -1,0 +1,6 @@
+[submodule "chemprop"]
+	path = chemprop
+	url = https://github.com/chemprop/chemprop.git
+[submodule "n2nmn"]
+	path = n2nmn
+	url = https://github.com/ronghanghu/n2nmn.git
