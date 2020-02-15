@@ -4,12 +4,6 @@ Publication: [Analyzing Learned Molecular Representations for Property Predictio
 
 ## Instructions
 
-Get the repo:
-
-```
-git clone https://github.com/chemprop/chemprop.git
-```
-
 Make conda environment:
 
 ```
@@ -40,12 +34,6 @@ python train.py --data_path data/tox21.csv --dataset_type classification --save_
 Publication: [Learning to Reason: End-to-End Module Networks for Visual Question Answering](https://arxiv.org/abs/1704.05526)
 
 ## Instructions
-
-Get the repo:
-
-```
-git clone https://github.com/ronghanghu/n2nmn.git
-```
 
 Make conda environment:
 
@@ -90,3 +78,29 @@ python exp_clevr/train_clevr_scratch.py
 * CPU activity: ~100%
 
 It prints messages about slow I/O, which it does when its prefetch queue is empty.
+
+# PINN
+
+An implementation of [RobustFill](https://arxiv.org/abs/1703.07469).
+
+## Instructions
+
+Make conda environment:
+
+```
+conda create --name pinn
+conda activate pinn
+conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
+```
+
+Run microbenchmark:
+
+```
+cd pinn
+python test_robustfill.py
+```
+
+## Results:
+
+* GPU activity: ~70%
+* CPU activity: ~100%

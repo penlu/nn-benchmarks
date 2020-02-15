@@ -4,3 +4,6 @@
 [submodule "n2nmn"]
 	path = n2nmn
 	url = https://github.com/ronghanghu/n2nmn.git
+[submodule "pinn"]
+	path = pinn
+	url = https://github.com/insperatum/pinn.git
