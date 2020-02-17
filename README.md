@@ -1,6 +1,7 @@
 # Preliminaries
 
 Install [Anaconda](https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh)!
+Update: `conda update -n base -c defaults conda`
 
 Pull the submodules:
 ```
@@ -14,7 +15,7 @@ Publication: [Analyzing Learned Molecular Representations for Property Predictio
 
 ## Instructions
 
-Make conda environment:
+Install requirements:
 
 ```
 cd chemprop/
@@ -45,12 +46,11 @@ Publication: [Learning to Reason: End-to-End Module Networks for Visual Question
 
 ## Instructions
 
-Make conda environment:
+Install requirements:
 
 ```
-conda create --name n2nmn
+conda create --name n2nmn python=3.5
 conda activate n2nmn
-conda install pip
 python -m pip install tensorflow-gpu==1.0.0
 python -m pip install https://storage.googleapis.com/tensorflow_fold/tensorflow_fold-0.0.1-py3-none-linux_x86_64.whl
 ```
@@ -95,7 +95,7 @@ An implementation of [RobustFill](https://arxiv.org/abs/1703.07469).
 
 ## Instructions
 
-Make conda environment:
+Install requirements:
 
 ```
 conda create --name pinn
@@ -110,7 +110,7 @@ cd pinn
 python test_robustfill.py
 ```
 
-## Results:
+## Results
 
 * GPU activity: ~70%
 * CPU activity: ~100%
@@ -121,9 +121,11 @@ Publication: [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 
 ## Instructions
 
-Make conda environment:
+Install requirements:
 
 ```
+# Haven't totally worked out dependencies yet.
+# Possibly needs additional CUDA libraries in LD_LIBRARY_PATH.
 conda create --name t2t
 conda activate t2t
 conda install pip
@@ -154,7 +156,32 @@ t2t-trainer \
   --output_dir=t2t_train
 ```
 
-## Results:
+## Results
 
 * GPU activity: ~90%
 * CPU activity: ~110%
+
+# meta_nn_scan:
+
+## Instructions
+
+Install requirements:
+
+```
+conda create --name meta_nn_scan
+conda activate meta_nn_scan
+conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
+```
+
+Run microbenchmark:
+
+```
+cd meta_nn_scan/meta_net
+python pretrain.py --type 'miniscanRBbase' --fn_out_model 'ICML_miniscan_final' \
+  --batchsize 128 --episode_type 'rules_gen' --num_pretrain_episodes 100000 \
+  --parallel 2
+```
+
+## Results
+
+* GPU activity: ~5%, with spikes to ~20%.
