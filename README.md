@@ -1,3 +1,13 @@
+# Preliminaries
+
+Install [Anaconda](https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh)!
+
+Pull the submodules:
+```
+git submodule init
+git submodule update
+```
+
 # Chemprop
 
 Publication: [Analyzing Learned Molecular Representations for Property Prediction](https://pubs.acs.org/doi/10.1021/acs.jcim.9b01076)
@@ -38,10 +48,11 @@ Publication: [Learning to Reason: End-to-End Module Networks for Visual Question
 Make conda environment:
 
 ```
-conda create --name n2nmn python=3.6
+conda create --name n2nmn
 conda activate n2nmn
-pip install tensorflow-gpu==1.0.0
-pip install https://storage.googleapis.com/tensorflow_fold/tensorflow_fold-0.0.1-py3-none-linux_x86_64.whl
+conda install pip
+python -m pip install tensorflow-gpu==1.0.0
+python -m pip install https://storage.googleapis.com/tensorflow_fold/tensorflow_fold-0.0.1-py3-none-linux_x86_64.whl
 ```
 
 Get and process the data, per the README:
@@ -75,7 +86,6 @@ python exp_clevr/train_clevr_scratch.py
 ## Results
 
 * GPU activity: ~50%
-* CPU activity: ~100%
 
 It prints messages about slow I/O, which it does when its prefetch queue is empty.
 
@@ -104,3 +114,47 @@ python test_robustfill.py
 
 * GPU activity: ~70%
 * CPU activity: ~100%
+
+# Attention Is All You Need
+
+Publication: [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+
+## Instructions
+
+Make conda environment:
+
+```
+conda create --name t2t
+conda activate t2t
+conda install pip
+python -m pip install tensorflow-gpu==1.15.0
+
+cd tensor2tensor
+python setup.py install
+```
+
+Generate data:
+
+```
+mkdir -p t2t_data t2t_datagen t2t_train
+t2t-datagen \
+  --data_dir=t2t_data \
+  --tmp_dir=t2t_datagen \
+  --problem=translate_ende_wmt32k
+```
+
+Run microbenchmark:
+
+```
+t2t-trainer \
+  --data_dir=t2t_data \
+  --problem=translate_ende_wmt32k \
+  --model=transformer \
+  --hparams_set=transformer_base_single_gpu \
+  --output_dir=t2t_train
+```
+
+## Results:
+
+* GPU activity: ~90%
+* CPU activity: ~110%

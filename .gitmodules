@@ -7,3 +7,6 @@
 [submodule "pinn"]
 	path = pinn
 	url = https://github.com/insperatum/pinn.git
+[submodule "tensor2tensor"]
+	path = tensor2tensor
+	url = https://github.com/tensorflow/tensor2tensor.git
